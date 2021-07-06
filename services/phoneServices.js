@@ -1,7 +1,7 @@
 const Phone = require('../models/phone');
 
 module.exports = {
-    addDanhba: function(phone) {
+    addContact: function(phone) {
         return new Promise(function(res, rej){
             const newPhone = new Phone(phone);
             newPhone.save(function (err) {
@@ -13,12 +13,23 @@ module.exports = {
             });
         });
     },
-    getDanhba: function() {
+    getContact: function() {
         return Phone.find();
     },
-    deleteDanhba: function(phoneId) {
+    deleteContact: function(phoneId) {
         return new Promise(function(resolve, reject) {
-            Phone.deleteOne({_id: PhoneId}, function(err) {
+            Phone.deleteOne({_id: phoneId}, function(err) {
+                if (!err) {
+                    resolve()
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    },
+    updateContact: function(phoneId, data) {
+        return new Promise(function(resolve, reject) {
+            Phone.updateOne({_id: phoneId}, data, function(err) {
                 if (!err) {
                     resolve()
                 } else {

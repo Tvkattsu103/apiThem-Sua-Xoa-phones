@@ -1,19 +1,20 @@
 const express= require('express');
 
 const phoneControllers= require('../controllers/phoneControllers');
-const validDateRegister = require('../middlewares/phoneFormValiddate')
-const app= express();
+const valiDateRegister = require('../middlewares/phoneFormValidate');
+const phoneExist = require('../middlewares/phoneExist');
+const app = express();
 
 //add data
-app.post('/phone',validDateRegister,phoneControllers.adddanhba);
+app.post('/phone', valiDateRegister, phoneExist, phoneControllers.addcontact);
 
 //get data
-app.get('/list',phoneControllers.getdanhba);
+app.get('/list',phoneControllers.getcontact);
 
 //update data
-app.patch('/phone/:id',phoneControllers.updatedanhba);
+app.patch('/phone/:id',valiDateRegister,phoneControllers.updatecontact);
 
 //delete data
-app.delete('/phone/:id',phoneControllers.deletedanhba);
+app.delete('/phone/:id',phoneControllers.deletecontact);
 
 module.exports= app;
