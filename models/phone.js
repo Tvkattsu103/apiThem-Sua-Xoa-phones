@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const phoneSchema=new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const phoneSchema=new Schema({
     tendanhba: String,
     sdt: String
 });

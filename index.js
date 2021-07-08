@@ -1,6 +1,8 @@
 const express=require('express');
 const phoneRoutes = require('./routes/phoneRoutes');
 const app = express();
+const cors = require('cors');
+
 require('dotenv').config();
 
 const port=process.env.APP_PORT || 5000;
