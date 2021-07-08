@@ -4,7 +4,7 @@ const phoneControllers= require('../controllers/phoneControllers');
 const valiDateRegister = require('../middlewares/phoneFormValidate');
 const phoneExist = require('../middlewares/phoneExist');
 const app = express();
-
+// app.use(valiDateRegister);
 //add data
 app.post('/phone', valiDateRegister, phoneExist, phoneControllers.addcontact);
 

@@ -1,5 +1,3 @@
-
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const phoneServices = require('../services/phoneServices')
 

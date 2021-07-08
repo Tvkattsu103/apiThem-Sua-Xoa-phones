@@ -3,5 +3,5 @@ const phoneSchema=new mongoose.Schema({
     tendanhba: String,
     sdt: String
 });
-const Phone = mongoose.model('Phone',phoneSchema);
-module.exports=Phone;
+const phone = mongoose.model('Phone',phoneSchema);
+module.exports=phone;

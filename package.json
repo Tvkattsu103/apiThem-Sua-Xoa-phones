@@ -16,6 +16,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.0",
     "mongoose-seed": "^0.6.0",
+    "nodemon": "^2.0.9",
     "seed": "^0.4.4"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
