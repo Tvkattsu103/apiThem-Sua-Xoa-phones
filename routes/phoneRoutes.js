@@ -6,18 +6,15 @@ const phoneExist = require('../middlewares/phoneExist');
 const app = express();
 // app.use(valiDateRegister);
 //add data
-app.post('/phone', valiDateRegister, phoneExist, phoneControllers.addcontact);
+app.post('/register', valiDateRegister, phoneExist, phoneControllers.addcontact);
 
 //get data
 app.get('/list',phoneControllers.getcontact);
 
-//login
-app.post('/login', phoneControllers.login);
-
 //update data
-app.put('/phone/:id',valiDateRegister,phoneControllers.updatecontact);
+app.put('/:id',valiDateRegister,phoneControllers.updatecontact);
 
 //delete data
-app.delete('/phone/:id',phoneControllers.deletecontact);
+app.delete('/:id',phoneControllers.deletecontact);
 
 module.exports= app;

@@ -1,7 +1,8 @@
 const express=require('express');
-const phoneRoutes = require('./routes/phoneRoutes');
+const appRoutes = require('./routes');
 const app = express();
 const cors = require('cors');
+const User = require('./models/user');
 
 require('dotenv').config();
 
@@ -16,9 +17,9 @@ db.once('open', function() {
 })
 
 
-app.use(phoneRoutes);
+app.use('/', appRoutes);
 
 
 app.listen(port, () => {
-        console.log(`Server running on port ${host}:${port}`)
-      });
+  console.log(`Server running on port ${host}:${port}`)
+});
