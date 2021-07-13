@@ -2,21 +2,34 @@ const Phone = require('../models/phone');
 const User = require('../models/user');
 
 module.exports = {
-    login: function(tentaikhoan, matkhau) {
+    login: function (tenTaikhoan, matKhau) {
         let userCache;
-        return User.findOne({tentaikhoan: tentaikhoan, matkhau})
+        return User.findOne({ tentaikhoan: tenTaikhoan})
             .then(userFound => {
+                console.log(userFound)
                 userCache = userFound;
                 const phoneId = userFound.phone_id;
-                return Phone.findOne({_id: phoneId})
+                return Phone.findOne({ _id: phoneId })
             })
             .then(phone => {
                 console.log(phone)
-                const userData = Object.assign({sdt: phone.sdt}, userCache._doc)
+                const userData = Object.assign({ sdt: phone.sdt }, userCache._doc)
                 console.log(userData)
                 delete userData.matkhau
                 delete userData.phone_id
                 return Promise.resolve(userData)
             })
+    },
+    addUser: function (user) {
+        return new Promise(function (res, rej) {
+            const newUser = new User(user);
+            newUser.save(function (err) {
+                if (err) {
+                    rej({ message: "error" })
+                } else {
+                    res(newUser)
+                }
+            });
+        });
     }
 }

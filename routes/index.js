@@ -1,4 +1,4 @@
-const express= require('express');
+const express = require('express');
 const userRouters = require('./userRoutes');
 const phoneRouters = require('./phoneRoutes');
 const app = express();
