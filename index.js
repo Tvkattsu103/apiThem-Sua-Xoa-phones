@@ -1,11 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const appRoutes = require('./routes');
 const app = express();
 const cors = require('cors');
 const User = require('./models/user');
 const passport = require('passport')
+const bodyParser = require('body-parser')
 
-require('dotenv').config();
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
+
 
 const port = process.env.APP_PORT || 5000;
 const host = process.env.APP_HOST;
@@ -20,16 +25,27 @@ db.once('open', function () {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// used to serialize the user for the session
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
+
+// passport.serializeUser(function (user, done) {
+//   console.log("Serialize here, got " + JSON.stringify(user));
+//   done(null, user._id);
+// });
+// passport.deserializeUser(function (id, done) {
+//   console.log("2")
+//   db.collection("users").findOne({ _id: mongodb.ObjectId(id) })
+//       .then(
+//           doc => done(null, doc),
+//           reason => done(reason)
+//       );
+// });
+passport.serializeUser(function(user, done) {
+  done(null, user);
+  // console.log(user)
   console.log("1")
 });
-// used to deserialize the user
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-      done(err, user);
-  });
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
   console.log("2")
 });
 

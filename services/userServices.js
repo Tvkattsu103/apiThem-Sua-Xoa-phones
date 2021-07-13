@@ -3,10 +3,12 @@ const User = require('../models/user');
 
 module.exports = {
     login: function (tenTaikhoan, matKhau) {
+        console.log(tenTaikhoan)
+        console.log("ttk")
         let userCache;
         return User.findOne({ tentaikhoan: tenTaikhoan})
             .then(userFound => {
-                console.log(userFound)
+                console.log(userFound.phone_id)
                 userCache = userFound;
                 const phoneId = userFound.phone_id;
                 return Phone.findOne({ _id: phoneId })

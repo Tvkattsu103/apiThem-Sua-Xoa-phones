@@ -20,14 +20,16 @@ userSchema.pre("save", function(next){
     })
 })
 
-userSchema.methods.verifyPassword = function (matkhau,cb){
-    bcrypt.compare(matkhau, this.matkhau, (err, isMatch) => {
+userSchema.methods.verifyPassword = function (newPassword, cb) {
+    console.log(this.matkhau)
+    bcrypt.compare(newPassword, this.matkhau, (err, isMatch) => {
         console.log(isMatch)
-        if(err) return cb(err);
-        else{
-            if(!isMatch) return cb(null, isMatch);
-            return cb(null,this);
-        }
+        if (err) return cb(err);        
+        else cb(null, isMatch);
+        // else {
+        //     if (!isMatch) return cb(null, isMatch);
+        //     return cb(null, this);
+        // }
     })
 }
 

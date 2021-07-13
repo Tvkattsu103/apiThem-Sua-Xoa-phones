@@ -6,13 +6,12 @@ const privateKey = process.env.APP_PRIVATE_KEY;
 
 module.exports = {
     login: function (req, res, next) {
-        const tenTaikhoan = req.body.tentaikhoan;
-        const matKhau = req.body.matkhau;
-        // console.log(tentaikhoan)
+        const tenTaikhoan = req.body.username;
+        const matKhau = req.body.password;
         userServices.login(tenTaikhoan, matKhau)
             .then(data => {
                 const authToken = jwt.sign({ data }, privateKey);
-                // console.log(authToken)
+                console.log(authToken)
                 res.set('Token', authToken);
                 res.json({ data })
             })
